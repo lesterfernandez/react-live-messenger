@@ -1,5 +1,6 @@
 {
   "name": "fullstack-chat",
+  "author": "Lester Fernandez",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
