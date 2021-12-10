@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@whatsapp-clone/server",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "socket.io": "^4.4.0",
-    "yup": "^0.32.11"
+    "@whatsapp-clone/common": "1.0.0"
   },
   "scripts": {
     "dev": "nodemon index.js"
