@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
-    "socket.io": "^4.4.0"
+    "socket.io": "^4.4.0",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "dev": "nodemon index.js"
