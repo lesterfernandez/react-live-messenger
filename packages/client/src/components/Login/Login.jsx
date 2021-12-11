@@ -1,10 +1,13 @@
 import { Button, ButtonGroup, Heading, VStack } from "@chakra-ui/react";
 import { formSchema } from "@whatsapp-clone/common";
 import { Form, Formik } from "formik";
+import { useContext } from "react";
 import { useNavigate } from "react-router";
+import { AccountContext } from "../AccountContext";
 import TextField from "./TextField";
 
 const Login = () => {
+  const { setUser } = useContext(AccountContext);
   const navigate = useNavigate();
   return (
     <Formik
@@ -32,7 +35,8 @@ const Login = () => {
           })
           .then(data => {
             if (!data) return;
-            console.log(data);
+            setUser({ ...data });
+            navigate("/home");
           });
       }}
     >
@@ -57,6 +61,7 @@ const Login = () => {
           placeholder="Enter password"
           autoComplete="off"
           label="Password"
+          type="password"
         />
 
         <ButtonGroup pt="1rem">

@@ -2,10 +2,13 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Button, ButtonGroup, Heading, VStack } from "@chakra-ui/react";
 import { formSchema } from "@whatsapp-clone/common";
 import { Form, Formik } from "formik";
+import { useContext } from "react";
 import { useNavigate } from "react-router";
+import { AccountContext } from "../AccountContext";
 import TextField from "./TextField";
 
 const SignUp = () => {
+  const { setUser } = useContext(AccountContext);
   const navigate = useNavigate();
   return (
     <Formik
@@ -14,7 +17,7 @@ const SignUp = () => {
       onSubmit={(values, actions) => {
         const vals = { ...values };
         actions.resetForm();
-        fetch("http://localhost:4000/auth/register", {
+        fetch("http://localhost:4000/auth/signup", {
           method: "POST",
           credentials: "include",
           headers: {
@@ -33,7 +36,8 @@ const SignUp = () => {
           })
           .then(data => {
             if (!data) return;
-            console.log(data);
+            setUser({ ...data });
+            navigate("/home");
           });
       }}
     >
@@ -58,6 +62,7 @@ const SignUp = () => {
           placeholder="Enter password"
           autoComplete="off"
           label="Password"
+          type="password"
         />
 
         <ButtonGroup pt="1rem">
