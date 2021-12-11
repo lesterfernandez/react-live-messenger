@@ -1,13 +1,14 @@
-import { Button, ButtonGroup, Heading, VStack } from "@chakra-ui/react";
+import { Button, ButtonGroup, Heading, Text, VStack } from "@chakra-ui/react";
 import { formSchema } from "@whatsapp-clone/common";
 import { Form, Formik } from "formik";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { AccountContext } from "../AccountContext";
 import TextField from "./TextField";
 
 const Login = () => {
   const { setUser } = useContext(AccountContext);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
   return (
     <Formik
@@ -36,7 +37,11 @@ const Login = () => {
           .then(data => {
             if (!data) return;
             setUser({ ...data });
-            navigate("/home");
+            if (data.status) {
+              setError(data.status);
+            } else if (data.loggedIn) {
+              navigate("/home");
+            }
           });
       }}
     >
@@ -49,6 +54,9 @@ const Login = () => {
         spacing="1rem"
       >
         <Heading>Log In</Heading>
+        <Text as="p" color="red.500">
+          {error}
+        </Text>
         <TextField
           name="username"
           placeholder="Enter username"
