@@ -9,8 +9,11 @@ import {
   VStack,
 } from "@chakra-ui/layout";
 import { Tab, TabList } from "@chakra-ui/tabs";
+import { useContext } from "react";
+import { FriendContext } from "./Home";
 
 const Sidebar = () => {
+  const { friendList, setFriendList } = useContext(FriendContext);
   return (
     <VStack py="1.4rem">
       <HStack justify="space-evenly" w="100%">
@@ -21,14 +24,16 @@ const Sidebar = () => {
       </HStack>
       <Divider />
       <VStack as={TabList}>
-        <HStack as={Tab}>
-          <Circle bg="red.500" w="20px" h="20px" />
-          <Text>John Smith</Text>
-        </HStack>
-        <HStack as={Tab}>
-          <Circle bg="green.700" w="20px" h="20px" />
-          <Text>John Smith</Text>
-        </HStack>
+        {friendList.map(friend => (
+          <HStack as={Tab}>
+            <Circle
+              bg={friend.connected ? "green.700" : "red.500"}
+              w="20px"
+              h="20px"
+            />
+            <Text>{friend.username}</Text>
+          </HStack>
+        ))}
       </VStack>
     </VStack>
   );
