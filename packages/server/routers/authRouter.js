@@ -6,7 +6,11 @@ const {
   attemptLogin,
   attemptRegister,
 } = require("../controllers/authController");
+const { rateLimiter } = require("../controllers/rateLimiter");
 
-router.route("/login").get(handleLogin).post(validateForm, attemptLogin);
-router.post("/signup", validateForm, attemptRegister);
+router
+  .route("/login")
+  .get(handleLogin)
+  .post(validateForm, rateLimiter(60, 10), attemptLogin);
+router.post("/signup", validateForm, rateLimiter(30, 4), attemptRegister);
 module.exports = router;
