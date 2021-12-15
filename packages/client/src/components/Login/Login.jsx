@@ -1,10 +1,16 @@
-import { Button, ButtonGroup, Heading, Text, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Heading,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { formSchema } from "@whatsapp-clone/common";
 import { Form, Formik } from "formik";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { AccountContext } from "../AccountContext";
-import TextField from "./TextField";
+import TextField from "../TextField";
 
 const Login = () => {
   const { setUser } = useContext(AccountContext);
@@ -76,7 +82,9 @@ const Login = () => {
           <Button colorScheme="teal" type="submit">
             Log In
           </Button>
-          <Button onClick={() => navigate("/register")}>Create Account</Button>
+          <Button onClick={() => navigate("/register")}>
+            Create Account
+          </Button>
         </ButtonGroup>
       </VStack>
     </Formik>
