@@ -1,6 +1,7 @@
-const redisClient = require("./redis");
-const RedisStore = require("connect-redis")(session);
+const redisClient = require("../redis");
+require("dotenv").config();
 const session = require("express-session");
+const RedisStore = require("connect-redis")(session);
 
 const sessionMiddleware = session({
   secret: process.env.COOKIE_SECRET,
