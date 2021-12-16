@@ -10,7 +10,6 @@ const helmet = require("helmet");
 const cors = require("cors");
 const authRouter = require("./routers/authRouter");
 const server = require("http").createServer(app);
-require("dotenv").config();
 
 const io = new Server(server, {
   cors: corsConfig,
