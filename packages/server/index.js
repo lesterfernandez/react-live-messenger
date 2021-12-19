@@ -9,6 +9,7 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 const authRouter = require("./routers/authRouter");
+const { authorizeUser } = require("./controllers/socketController");
 const server = require("http").createServer(app);
 
 const io = new Server(server, {
@@ -22,6 +23,7 @@ app.use(sessionMiddleware);
 app.use("/auth", authRouter);
 
 io.use(wrap(sessionMiddleware));
+io.use(authorizeUser);
 io.on("connect", socket => {
   console.log(socket.id);
   console.log(socket.request.session.user.username);
