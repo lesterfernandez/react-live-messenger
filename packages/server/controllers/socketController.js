@@ -3,6 +3,7 @@ module.exports.authorizeUser = (socket, next) => {
     console.log("Bad request!");
     next(new Error("Not authorized"));
   } else {
+    socket.user = { ...socket.request.session.user };
     next();
   }
 };
