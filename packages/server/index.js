@@ -9,8 +9,12 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 const authRouter = require("./routers/authRouter");
-const { authorizeUser } = require("./controllers/socketController");
-const { CLIENT_RENEG_WINDOW } = require("tls");
+const {
+  authorizeUser,
+  initializeUser,
+  addFriend,
+} = require("./controllers/socketController");
+const redisClient = require("./redis");
 const server = require("http").createServer(app);
 
 const io = new Server(server, {
@@ -26,12 +30,11 @@ app.use("/auth", authRouter);
 io.use(wrap(sessionMiddleware));
 io.use(authorizeUser);
 io.on("connect", socket => {
-  console.log(
-    "USERID:",
-    socket.user.userid,
-    "/ USERNAME:",
-    socket.user.username
-  );
+  initializeUser(socket);
+
+  socket.on("add_friend", (friendName, cb) => {
+    addFriend(socket, friendName, cb);
+  });
 });
 
 server.listen(4000, () => {
