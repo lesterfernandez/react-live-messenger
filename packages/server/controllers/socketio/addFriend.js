@@ -11,7 +11,7 @@ const addFriend = async (socket, friendName, cb) => {
     0,
     -1
   );
-  if (!friend) {
+  if (!friend.userid) {
     cb({ done: false, errorMsg: "User doesn't exist!" });
     return;
   }
