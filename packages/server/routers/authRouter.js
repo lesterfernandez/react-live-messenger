@@ -1,12 +1,12 @@
 const express = require("express");
-const validateForm = require("../controllers/validateForm");
+const validateForm = require("../controllers/express/validateForm");
 const router = express.Router();
 const {
   handleLogin,
   attemptLogin,
   attemptRegister,
 } = require("../controllers/authController");
-const { rateLimiter } = require("../controllers/rateLimiter");
+const rateLimiter = require("../controllers/express/rateLimiter");
 
 router
   .route("/login")

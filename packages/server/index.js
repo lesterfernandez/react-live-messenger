@@ -10,12 +10,11 @@ const helmet = require("helmet");
 const cors = require("cors");
 const authRouter = require("./routers/authRouter");
 const {
-  authorizeUser,
   initializeUser,
   addFriend,
   onDisconnect,
+  authorizeUser,
 } = require("./controllers/socketController");
-const redisClient = require("./redis");
 const server = require("http").createServer(app);
 
 const io = new Server(server, {

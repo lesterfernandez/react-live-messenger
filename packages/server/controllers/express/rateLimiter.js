@@ -1,6 +1,6 @@
-const redisClient = require("../redis");
+const redisClient = require("../../redis");
 
-module.exports.rateLimiter =
+const rateLimiter =
   (secondsLimit, limitAmount) => async (req, res, next) => {
     const ip = req.connection.remoteAddress;
     [response] = await redisClient
@@ -16,3 +16,5 @@ module.exports.rateLimiter =
       });
     else next();
   };
+
+module.exports = rateLimiter;
