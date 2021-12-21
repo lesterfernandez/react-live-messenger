@@ -1,4 +1,3 @@
-const { parse } = require("dotenv");
 const redisClient = require("../redis");
 
 module.exports.authorizeUser = (socket, next) => {
@@ -31,7 +30,6 @@ module.exports.initializeUser = async socket => {
   if (friendRooms.length > 0)
     socket.to(friendRooms).emit("connected", true, socket.user.username);
 
-  console.log(`${socket.user.username} friends:`, parsedFriendList);
   socket.emit("friends", parsedFriendList);
 };
 
