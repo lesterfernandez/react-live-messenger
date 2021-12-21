@@ -13,6 +13,7 @@ const {
   authorizeUser,
   initializeUser,
   addFriend,
+  onDisconnect,
 } = require("./controllers/socketController");
 const redisClient = require("./redis");
 const server = require("http").createServer(app);
@@ -35,6 +36,8 @@ io.on("connect", socket => {
   socket.on("add_friend", (friendName, cb) => {
     addFriend(socket, friendName, cb);
   });
+
+  socket.on("disconnecting", () => onDisconnect(socket));
 });
 
 server.listen(4000, () => {
