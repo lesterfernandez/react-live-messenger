@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-const socket = new io("http://localhost:4000", {
+const socket = new io(process.env.REACT_APP_SERVER_URL, {
   autoConnect: false,
   withCredentials: true,
 });

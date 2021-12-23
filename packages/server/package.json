@@ -18,6 +18,7 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   }
 }

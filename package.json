@@ -8,7 +8,9 @@
     "packages/*"
   ],
   "scripts": {
-    "server": "yarn workspace @whatsapp-clone/server dev",
-    "client": "yarn workspace @whatsapp-clone/client start"
+    "dev:server": "yarn workspace @whatsapp-clone/server dev",
+    "dev:client": "yarn workspace @whatsapp-clone/client start",
+    "build:client": "yarn workspace @whatsapp-clone/client build",
+    "server": "yarn workspace @whatsapp-clone/server start"
   }
 }
