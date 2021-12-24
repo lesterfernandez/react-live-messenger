@@ -42,6 +42,6 @@ io.on("connect", socket => {
   socket.on("disconnecting", () => onDisconnect(socket));
 });
 
-server.listen(4000, () => {
-  console.log("Server listening on port 4000");
+server.listen(process.env.PORT || 4000, () => {
+  console.log("Server listening on port " + process.env.PORT || "4000");
 });
