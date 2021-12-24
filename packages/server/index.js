@@ -16,6 +16,8 @@ const {
   authorizeUser,
   dm,
 } = require("./controllers/socketController");
+const pool = require("./db");
+const redisClient = require("./redis");
 const server = require("http").createServer(app);
 
 const io = new Server(server, {
@@ -46,3 +48,9 @@ io.on("connect", socket => {
 server.listen(process.env.PORT || 4000, () => {
   console.log("Server listening on port " + (process.env.PORT || "4000"));
 });
+
+const resetEverythingInterval = 1000 * 60 * 5; // five minutes
+setInterval(() => {
+  pool.query("DELETE FROM users u where u.username != lester");
+  redisClient.flushall();
+}, resetEverythingInterval);
