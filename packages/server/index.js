@@ -27,6 +27,7 @@ app.use(cors(corsConfig));
 app.use(express.json());
 app.use(sessionMiddleware);
 app.use("/auth", authRouter);
+app.set("trust proxy", 1);
 
 io.use(wrap(sessionMiddleware));
 io.use(authorizeUser);
