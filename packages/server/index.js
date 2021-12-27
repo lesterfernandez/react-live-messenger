@@ -49,7 +49,8 @@ server.listen(process.env.PORT || 4000, () => {
   console.log("Server listening on port " + (process.env.PORT || "4000"));
 });
 
-const resetEverythingInterval = 1000 * 60 * 5; // five minutes
+const resetEverythingInterval = 1000 * 60 * 7; // five minutes
+
 setInterval(() => {
   pool.query("DELETE FROM users u where u.username != $1", ["lester"]);
   redisClient.flushall();
