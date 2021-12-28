@@ -52,6 +52,9 @@ server.listen(process.env.PORT || 4000, () => {
 const resetEverythingInterval = 1000 * 60 * 7; // five minutes
 
 setInterval(() => {
+  if (process.env.NODE_ENV !== "production") {
+    return;
+  }
   pool.query("DELETE FROM users u where u.username != $1", ["lester"]);
   redisClient.flushall();
 }, resetEverythingInterval);
