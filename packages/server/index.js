@@ -1,9 +1,5 @@
 const express = require("express");
-const {
-  sessionMiddleware,
-  wrap,
-  corsConfig,
-} = require("./controllers/serverController");
+const { corsConfig } = require("./controllers/serverController");
 const { Server } = require("socket.io");
 const app = express();
 const helmet = require("helmet");
@@ -27,11 +23,9 @@ const io = new Server(server, {
 app.use(helmet());
 app.use(cors(corsConfig));
 app.use(express.json());
-app.use(sessionMiddleware);
 app.use("/auth", authRouter);
 app.set("trust proxy", 1);
 
-io.use(wrap(sessionMiddleware));
 io.use(authorizeUser);
 io.on("connect", socket => {
   initializeUser(socket);

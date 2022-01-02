@@ -1,5 +1,8 @@
 const pool = require("../../db");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { jwtSign } = require("../jwt/jwtAuth");
+require("dotenv").config();
 
 const attemptLogin = async (req, res) => {
   const potentialLogin = await pool.query(
@@ -13,12 +16,22 @@ const attemptLogin = async (req, res) => {
       potentialLogin.rows[0].passhash
     );
     if (isSamePass) {
-      req.session.user = {
-        username: req.body.username,
-        id: potentialLogin.rows[0].id,
-        userid: potentialLogin.rows[0].userid,
-      };
-      res.json({ loggedIn: true, username: req.body.username });
+      jwtSign(
+        {
+          username: req.body.username,
+          id: potentialLogin.rows[0].id,
+          userid: potentialLogin.rows[0].userid,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: "7d" }
+      )
+        .then(token => {
+          res.json({ loggedIn: true, token });
+        })
+        .catch(err => {
+          console.log(err);
+          res.json({ loggedIn: false, status: "Try again later" });
+        });
     } else {
       res.json({ loggedIn: false, status: "Wrong username or password!" });
       console.log("wrong pass");

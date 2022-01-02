@@ -15,13 +15,23 @@ const attemptRegister = async (req, res) => {
       "INSERT INTO users(username, passhash, userid) values($1,$2,$3) RETURNING id, username, userid",
       [req.body.username, hashedPass, uuidv4()]
     );
-    req.session.user = {
-      username: req.body.username,
-      id: newUserQuery.rows[0].id,
-      userid: newUserQuery.rows[0].userid,
-    };
 
-    res.json({ loggedIn: true, username: req.body.username });
+    jwtSign(
+      {
+        username: req.body.username,
+        id: newUserQuery.rows[0].id,
+        userid: newUserQuery.rows[0].userid,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "7d" }
+    )
+      .then(token => {
+        res.json({ loggedIn: true, token });
+      })
+      .catch(err => {
+        console.log(err);
+        res.json({ loggedIn: false, status: "Try again later" });
+      });
   } else {
     res.json({ loggedIn: false, status: "Username taken" });
   }

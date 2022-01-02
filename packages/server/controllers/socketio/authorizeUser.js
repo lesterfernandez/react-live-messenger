@@ -1,10 +1,18 @@
+const { jwtVerify } = require("../jwt/jwtAuth");
+require("dotenv").config();
+
 const authorizeUser = (socket, next) => {
-  if (!socket.request.session || !socket.request.session.user) {
-    console.log("Bad request!");
-    next(new Error("Not authorized"));
-  } else {
-    next();
-  }
+  const token = socket.handshake.auth.token;
+
+  jwtVerify(token, process.env.JWT_SECRET)
+    .then(decoded => {
+      socket.user = { ...decoded };
+      next();
+    })
+    .catch(err => {
+      console.log("Bad request!", err);
+      next(new Error("Not authorized"));
+    });
 };
 
 module.exports = authorizeUser;
