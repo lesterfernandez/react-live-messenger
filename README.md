@@ -13,9 +13,9 @@ I learned how to use JWT for authentication. I also learned the basics of NGINX.
 Most of my growth came from the back-end implementations as I am already familiar with the front-end technology used for this project. 
 
 ## Packages
-client - react.js frontend
-server - node.js backend
-common - code shared between client and server
+- client - react.js frontend
+- server - node.js backend
+- common - code shared between client and server
 
 ## How it works
 * Front-End: React.js
