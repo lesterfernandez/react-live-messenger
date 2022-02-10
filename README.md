@@ -5,13 +5,6 @@ This application was built publicly with the entire build process avaiable on Yo
 
 [YouTube Playist](https://www.youtube.com/playlist?list=PLBieMfwfePY-PPxTYmYZteqYpC_D7W1JT)
 
-## How it works
-* Front-End: React.js
-* Back-End: Node.js / Express.js / Socket.io
-* Authenticaion: JWT
-* Database: PostgreSQL and Redis
-* Hosting: Digital Ocean Linux Server with NGINX and SSL
-
 ## What I Learned
 Through the creation of this project I learned how to handle real-time communication between clients by using a dedicated server as the mediator. 
 
@@ -19,7 +12,19 @@ I learned how to use JWT for authentication. I also learned the basics of NGINX.
 
 Most of my growth came from the back-end implementations as I am already familiar with the front-end technology used for this project. 
 
-## How to run locally
+## Packages
+client - react.js frontend
+server - node.js backend
+common - code shared between client and server
+
+## How it works
+* Front-End: React.js
+* Back-End: Node.js / Express.js / Socket.io
+* Authenticaion: JWT
+* Database: PostgreSQL and Redis
+* Hosting: Digital Ocean Linux Server with NGINX and SSL
+
+## Installation
 * Clone the repository
 * CD into the repository and run ```yarn``` or ```npm install```
 * Make sure redis is installed and the ```redis-cli``` functions properly
