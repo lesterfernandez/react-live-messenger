@@ -13,8 +13,8 @@ const handleLogin = async (req, res) => {
   jwtVerify(token, process.env.JWT_SECRET)
     .then(async decoded => {
       const potentialUser = await pool.query(
-        "SELECT username from users u where u.username = $1",
-        [decoded]
+        "SELECT username FROM users u WHERE u.username = $1",
+        [decoded.username]
       );
 
       if (potentialUser.rowCount === 0) {

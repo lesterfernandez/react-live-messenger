@@ -1,4 +1,5 @@
 const redisClient = require("../../redis");
+const addFriend = require("./addFriend");
 const parseFriendList = require("./parseFriendList");
 
 const initializeUser = async socket => {
@@ -10,6 +11,12 @@ const initializeUser = async socket => {
     "connected",
     true
   );
+
+  // always have lester as a friend
+  // this is because this project serves as a demo
+  // therefore I want people to be able to test it out quickly
+  await addFriend(socket, "lester", () => {});
+
   const friendList = await redisClient.lrange(
     `friends:${socket.user.username}`,
     0,

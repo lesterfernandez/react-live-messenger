@@ -1,6 +1,7 @@
 const pool = require("../../db");
 const bcrypt = require("bcrypt");
 const { v4: uuidv4 } = require("uuid");
+const { jwtSign } = require("../jwt/jwtAuth");
 
 const attemptRegister = async (req, res) => {
   const existingUser = await pool.query(

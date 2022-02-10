@@ -15,7 +15,10 @@ const addFriend = async (socket, friendName, cb) => {
     cb({ done: false, errorMsg: "User doesn't exist!" });
     return;
   }
-  if (currentFriendList && currentFriendList.indexOf(friendName) !== -1) {
+  if (
+    currentFriendList &&
+    currentFriendList.indexOf(`${friendName}.${friend.userid}`) !== -1
+  ) {
     cb({ done: false, errorMsg: "Friend already added!" });
     return;
   }

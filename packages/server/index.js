@@ -43,7 +43,7 @@ server.listen(process.env.PORT || 4000, () => {
   console.log("Server listening on port " + (process.env.PORT || "4000"));
 });
 
-const resetEverythingInterval = 1000 * 60 * 7; // five minutes
+const resetEverythingInterval = 1000 * 60 * 15; // 15 minutes
 
 setInterval(() => {
   if (process.env.NODE_ENV !== "production") {
