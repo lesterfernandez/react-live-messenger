@@ -39,4 +39,4 @@ Most of my growth came from the back-end implementations as I used front-end tec
 <br/>DATABASE_PASSWORD=
 <br/>DATABASE_PORT=
 <br/>COOKIE_SECRET=
-* Run ```yarn server``` and ```yarn client```
+* Run ```yarn dev:server``` and ```yarn dev:client```
