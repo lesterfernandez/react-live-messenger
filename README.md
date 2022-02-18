@@ -5,12 +5,15 @@ This application was built publicly with the entire build process avaiable on Yo
 
 [YouTube Playist](https://www.youtube.com/playlist?list=PLBieMfwfePY-PPxTYmYZteqYpC_D7W1JT)
 
+## Why?
+This was a passion project. I built it for fun and to challenge myself.
+
 ## What I Learned
-Through the creation of this project I learned how to handle real-time communication between clients by using a dedicated server as the mediator. 
+Through the creation of this project I gained a foundation in systems design and project management.
 
-I learned how to use JWT for authentication. I also learned the basics of NGINX. 
+I learned how to use JWT for authentication and the basics of NGINX. 
 
-Most of my growth came from the back-end implementations as I am already familiar with the front-end technology used for this project. 
+Most of my growth came from the back-end implementations as I used front-end technology that was familiar to me. 
 
 ## Packages
 - client - react.js frontend
