@@ -1,0 +1,21 @@
+services:
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+  web:
+    # build:
+    #   context: .
+    #   dockerfile: packages/server/Dockerfile
+    image: lesterfernandez/whatsapp-clone:latest
+    ports:
+      - "4000:4000"
+    environment:
+      - REDIS_HOST=redis
+      - DATABASE_URL=postgres://postgres:helloworld@db:5001/postgres
+  db:
+    image: postgres
+    ports:
+      - "5001:5001"
+    environment:
+      - POSTGRES_PASSWORD=helloworld
